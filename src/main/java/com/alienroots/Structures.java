@@ -31,7 +31,7 @@ final class Structures {
 
     /** Called where a root ends: decide what the colony builds there. */
     static void colonize(Colony c, BlockPos at) {
-        if (c.structures >= Colony.MAX_STRUCTURES || c.structureBudget < 400) return;
+        if (c.structures >= c.cfg.maxStructures || c.structureBudget < 200) return;
         c.structures++;
         int roll = c.random.nextInt(100);
         if (roll < 35) tree(c, at, 8 + c.random.nextInt(8), false);
@@ -106,11 +106,16 @@ final class Structures {
     // ------------------------------------------------------------------ spires
 
     static void spire(Colony c, BlockPos base, int height, double radius, int strands) {
+        spire(c, base, height, radius, strands, null);
+    }
+
+    /** onComplete runs once the whole spire (core, helix strands and crown) is finished. */
+    static void spire(Colony c, BlockPos base, int height, double radius, int strands, Runnable onComplete) {
         double bx = base.getX() + 0.5, bz = base.getZ() + 0.5, by = base.getY();
         double ticks = height * 3.5;
         int[] remaining = {strands + 1};
         Runnable done = () -> {
-            if (--remaining[0] == 0) crownSpire(c, base.up(height), radius);
+            if (--remaining[0] == 0) crownSpire(c, base.up(height), radius, onComplete);
         };
 
         List<BlockPos> core = Paths.line(new Vec3d(bx, by, bz), new Vec3d(bx, by + height, bz));
@@ -138,12 +143,13 @@ final class Structures {
         }
     }
 
-    private static void crownSpire(Colony c, BlockPos top, double radius) {
+    private static void crownSpire(Colony c, BlockPos top, double radius, Runnable onComplete) {
         boolean big = radius > 3.5;
         pod(c, top.up(2), big ? 3 : 2, true);
         antenna(c, top.up(big ? 6 : 5), big ? 8 : 5);
         c.addBeacon(top.up(3));
         Build.lightning(c.world, top.up(2));
+        if (onComplete != null) onComplete.run();
     }
 
     // ------------------------------------------------------------------ arches
@@ -196,7 +202,7 @@ final class Structures {
 
     /** A curling stalk that reaches up into the air and ends in a glowing bulb. */
     static void stalk(Colony c, BlockPos base) {
-        if (c.stalks >= Colony.MAX_STALKS || c.structureBudget < 100) return;
+        if (c.stalks >= c.cfg.maxStalks || c.structureBudget < 100) return;
         c.stalks++;
         Random r = c.random;
         ServerWorld w = c.world;

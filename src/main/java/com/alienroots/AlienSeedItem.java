@@ -14,13 +14,17 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-/** Right-click while looking at a block (up to 128 blocks away) to call down the asteroid. */
+/** A meteor caller: right-click while looking at a block (up to 128 blocks away). Used by both seeds. */
 public class AlienSeedItem extends Item {
     private static final double RANGE = 128.0;
-    private static final int COOLDOWN_TICKS = 100;
 
-    public AlienSeedItem(Settings settings) {
+    private final AsteroidStrike.Kind kind;
+    private final int cooldownTicks;
+
+    public AlienSeedItem(Settings settings, AsteroidStrike.Kind kind, int cooldownTicks) {
         super(settings);
+        this.kind = kind;
+        this.cooldownTicks = cooldownTicks;
     }
 
     @Override
@@ -37,10 +41,10 @@ public class AlienSeedItem extends Item {
 
         if (!world.isClient) {
             BlockPos target = ((BlockHitResult) hit).getBlockPos();
-            AsteroidStrike.launch((ServerWorld) world, target);
+            AsteroidStrike.launch((ServerWorld) world, target, kind);
             world.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, SoundCategory.PLAYERS, 1.0f, 0.6f);
-            player.getItemCooldownManager().set(this, COOLDOWN_TICKS);
+            player.getItemCooldownManager().set(this, cooldownTicks);
             stack.decrementUnlessCreative(1, player);
         }
         return TypedActionResult.success(stack, world.isClient());

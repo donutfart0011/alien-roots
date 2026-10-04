@@ -1,4 +1,6 @@
 {
   "item.alienroots.alien_seed": "Alien Seed",
+  "item.alienroots.hive_seed": "Hive Seed",
+  "entity.alienroots.meteor": "Alien Meteor",
   "itemGroup.alienroots.main": "Alien Roots"
 }

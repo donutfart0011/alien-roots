@@ -1,19 +1,27 @@
 # Alien Roots (Fabric, Minecraft 1.21.1)
 
-**Alien Seed**: right-click while looking at any block (up to 128 blocks away).
-It's in the creative inventory in its own "Alien Roots" tab (also in Tools & Utilities),
-or run `/give @s alienroots:alien_seed`.
-Survival recipe: amethyst shards (corners) + mangrove roots (edges) + ender eye (center).
+Two meteor callers. Right-click while looking at any block (up to 128 blocks away).
+Both are in the creative inventory in the "Alien Roots" tab (and Tools & Utilities),
+or: `/give @s alienroots:alien_seed`  and  `/give @s alienroots:hive_seed`
 
-What happens:
+## Alien Seed
+Survival recipe: amethyst shards (corners) + mangrove roots (edges) + ender eye (center).
 1. A tear opens in the sky and a red warning ring tightens on the ground.
-2. A glowing alien asteroid streaks in with a comet tail.
-3. Explosion, cosmetic lightning, and a shockwave that rolls along the terrain.
-4. An alien core forms, and its heart beats: glowing pulses race across the land.
-5. Roots crawl over ANY surface (ground, cliffs, overhangs, tree trunks), forking as they go,
-   with stalks reaching up into the air.
-6. The colony builds: a giant Heart (helix spire + great trees), plus alien trees, helix spires,
-   arches, amethyst spikes, and glowing egg pods wherever roots end.
+2. A real, glowing, tumbling meteor streaks in with a comet tail.
+3. Huge fiery explosion, lightning, and a shockwave that ignites and scorches the ground.
+4. An alien core forms and "beats": glowing pulses race across the land.
+5. Roots crawl over ANY surface (ground, cliffs, overhangs, trees), with stalks reaching into the air.
+6. The colony builds: a giant Heart (helix spire + great trees), alien trees, spires, arches,
+   amethyst spikes, and glowing egg pods.
+
+## Hive Seed
+Survival recipe: crying obsidian (corners) + ender eyes (edges) + an Alien Seed (center).
+1. Same meteor, same big fiery impact.
+2. Roots crawl out in four directions (about 42 blocks) to four huge towers, all built to the same height.
+3. When all four are done, their tips link up with braided energy arcs: a ring first, then the two diagonals.
+4. A great beam erupts into the sky from the center.
+5. For about 15 seconds the beam launches small alien seeds that streak out and hit the surrounding area.
+   Each one explodes, starts a little fire, and plants a mini colony.
 
 ---------------------------------------------------------------------
 
@@ -76,9 +84,9 @@ For a server: install the Fabric server for 1.21.1, put both jars in the server'
 - Compile errors: copy the full error message and send it to me.
 
 ## Tweak
-- `AsteroidStrike`: SPEED, EXPLOSION_POWER
-- `Colony`: STEP_INTERVAL, MAX_ROOT_BLOCKS, MAX_TIPS, MAX_RADIUS, STARTING_TIPS,
-  MAX_STRUCTURES, MAX_STALKS, STRUCTURE_BUDGET (lower these if your game lags)
+- `AsteroidStrike.Kind`: meteor size, explosion power, fire radius/chance, scorch radius, speed
+- `Colony.Config`: sizes and limits for each colony type (lower these if your game lags)
+- `Hive`: SPACING, TOWER_HEIGHT, TOWER_RADIUS, METEORS, METEOR_INTERVAL, BEAM_TICKS
 - `AlienSeedItem`: RANGE, COOLDOWN_TICKS
 
 ## Easiest way to get the jar: let GitHub build it

@@ -3,12 +3,13 @@
   "id": "alienroots",
   "version": "${version}",
   "name": "Alien Roots",
-  "description": "An Alien Seed that calls down an asteroid, then spreads glowing roots across the land.",
+  "description": "Alien Seeds that call down meteors, spread glowing roots, and colonize the land.",
   "authors": ["YourName"],
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.alienroots.AlienRoots"]
+    "main": ["com.alienroots.AlienRoots"],
+    "client": ["com.alienroots.client.AlienRootsClient"]
   },
   "depends": {
     "fabricloader": ">=0.16.0",

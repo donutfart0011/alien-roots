@@ -16,16 +16,22 @@ public final class Effects {
     }
 
     private static final List<Effect> ACTIVE = new ArrayList<>();
+    private static final List<Effect> PENDING = new ArrayList<>(); // added while ticking (e.g. meteor shower seeds)
 
     public static void add(Effect effect) {
-        ACTIVE.add(effect);
+        PENDING.add(effect);
     }
 
     public static void clear() {
         ACTIVE.clear();
+        PENDING.clear();
     }
 
     public static void tick(ServerWorld world) {
+        if (!PENDING.isEmpty()) {
+            ACTIVE.addAll(PENDING);
+            PENDING.clear();
+        }
         Iterator<Effect> it = ACTIVE.iterator();
         while (it.hasNext()) {
             Effect e = it.next();

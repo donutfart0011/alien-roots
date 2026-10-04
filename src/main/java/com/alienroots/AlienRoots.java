@@ -9,6 +9,7 @@ public class AlienRoots implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModEntities.register();
         ModItems.register();
         ServerTickEvents.END_WORLD_TICK.register(Effects::tick);
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> Effects.clear());

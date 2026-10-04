@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["COC", "OSO", "COC"],
+  "key": {
+    "C": { "item": "minecraft:crying_obsidian" },
+    "O": { "item": "minecraft:ender_eye" },
+    "S": { "item": "alienroots:alien_seed" }
+  },
+  "result": { "id": "alienroots:hive_seed", "count": 1 }
+}
