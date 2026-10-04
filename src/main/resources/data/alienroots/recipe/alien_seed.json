@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["ARA", "RER", "ARA"],
+  "key": {
+    "A": { "item": "minecraft:amethyst_shard" },
+    "R": { "item": "minecraft:mangrove_roots" },
+    "E": { "item": "minecraft:ender_eye" }
+  },
+  "result": { "id": "alienroots:alien_seed", "count": 1 }
+}

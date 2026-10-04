@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "alienroots",
+  "version": "${version}",
+  "name": "Alien Roots",
+  "description": "An Alien Seed that calls down an asteroid, then spreads glowing roots across the land.",
+  "authors": ["YourName"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.alienroots.AlienRoots"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
